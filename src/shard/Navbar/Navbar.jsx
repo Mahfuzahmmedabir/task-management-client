@@ -1,8 +1,8 @@
-import React from 'react';
 import { useState } from 'react';
 import { Moon, Sun } from 'lucide-react';
 
 const Navbar = () => {
+
   const [darkMode, setDarkMode] = useState(false);
   return (
     <div className=" sticky top-0 ">
