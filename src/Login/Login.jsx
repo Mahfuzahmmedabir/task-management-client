@@ -5,9 +5,10 @@ import { BsTwitterX } from 'react-icons/bs';
 import { SiApple } from 'react-icons/si';
 import useAuth from '../hooks/useAuth';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 const Login = () => {
-  const { createNewUser } = useAuth();
-
+  const { createNewUser, loginwithpopup,} = useAuth();
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -25,7 +26,7 @@ const Login = () => {
         icon: 'success',
         draggable: true,
       });
-      //  navigate('/');
+       navigate('/dashbord');
     } catch (error) {
       console.error('Google login error:', error.message);
       Swal.fire({
@@ -36,14 +37,23 @@ const Login = () => {
       });
     }
   };
+  const handelLogin = () => {
+    loginwithpopup()
+      .then(res => {
+      alert('all');
+    });
+  };
 
   return (
     <div className="w-8/12 mx-auto mt-10">
-      <h1 className="text-3xl font-semibold ">TaskManager</h1>
+      <h1 className="text-3xl font-semibold ">Task Manager</h1>
       <div className="  mt-12 w-full max-w-sm shrink-0 ">
         <h2 className="text-3xl font-semibold">Sign up</h2>
         <div className="mt-6">
-          <button className="flex items-center justify-center gap-3 border py-3 w-full text-xl font-bold rounded-lg">
+          <button
+            onClick={handelLogin}
+            className="flex items-center justify-center gap-3 border py-3 w-full text-xl font-bold rounded-lg"
+          >
             <FcGoogle />
             Continue with Google
           </button>
